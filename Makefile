@@ -59,8 +59,8 @@ restore:
 sql-backup-restore:
 	@./lib/sql-backup-restore.sh
 sql-backup:
-	@./lib/sql-backup-restore.sh --backup
+	@./lib/sql-backup-restore.sh --backup -y
 sql-restore:
-	@./lib/sql-backup-restore.sh --restore
+	@./lib/sql-backup-restore.sh --restore -y
 sql-sanitize:
-	@./lib/sql-backup-restore.sh --sanitize
+	@./lib/sql-backup-restore.sh --sanitize -y

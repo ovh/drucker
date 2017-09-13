@@ -158,6 +158,7 @@ function restoreDatabase ()
 
         if [ "${RESTORE_DBNAME}" == "l" ]; then
             listDatabases
+            RESTORE_DBNAME=""
             continue;
         fi
 
@@ -174,6 +175,7 @@ function restoreDatabase ()
 
         if [ ! -f "${pathToSqlDirLocal}/${RESTORE_DBNAME_ESCAPED}.sql" ]; then
             echo "This database doesn't exist!"
+            RESTORE_DBNAME=""
             continue;
         fi
 
