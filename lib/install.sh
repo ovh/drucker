@@ -43,17 +43,22 @@ echo "Building custom themes..."
 
 # Wait for Database created
 echo -n "Waiting for the database connection..."
-db_test_file="db-install-test"
 while true; do
-    drush sql-query --result-file="$(web_tmp)/${db_test_file}" "SHOW DATABASES LIKE '${DB_DRUPAL_DB}'" > /dev/null
-    dbready=`cat "$(tmp)/${db_test_file}"`
-    if [ "$dbready" = "$DB_DRUPAL_DB" ]; then
-        echo "Done!"
-        rm -rf "$(tmp)/${db_test_file}" 2>/dev/null
-        break;
-    else
+
+    # @TOFIX: maybe we can find a better solution
+    dbready=`(docker-compose \
+        --project-name "$PROJECT_NAME_PLAIN" \
+        -f "$(druckerdir)/lib/docker-compose.yml" \
+        exec -T $DB_SERVICE mysql -u"${DB_DRUPAL_USER}" -p"${DB_DRUPAL_PASSWORD}" --execute="SHOW DATABASES LIKE '${DB_DRUPAL_DB}'")`
+
+    dbready="$(echo -e "${dbready}" | tr -d '[:space:]')"
+
+    if [ -z "${dbready}" ]; then
         echo -n "."
         sleep 2
+    else
+        echo "Done!"
+        break;
     fi
 done
 

@@ -165,7 +165,7 @@ while true; do
   fi
 
   # @TOFIX: only 8 and 8-alpine for now
-  REGEX='^8(?:\-alpine)?$';
+  REGEX='^8(-alpine)?$';
   if ! [[ $NODE_VERSION =~ $REGEX ]]; then
       echo "Invalid input. Please use valid version."
   else
@@ -186,5 +186,8 @@ sed -i "s/%%PHP_VERSION%%/$PHP_VERSION/g" "${PROJECT_DIR}/drucker.config"
 sed -i "s/%%PHP_XDEBUG_ENABLED%%/$PHP_XDEBUG_ENABLED/g" "${PROJECT_DIR}/drucker.config"
 sed -i "s/%%SUBNET%%/$SUBNET/g" "${PROJECT_DIR}/drucker.config"
 sed -i "s/%%NODE_VERSION%%/$NODE_VERSION/g" "${PROJECT_DIR}/drucker.config"
+
+# Greetings
+printf "\033[0;32m\e[1m[DONE]\e[0m Your drucker.config file is created.\n"
 
 popd > /dev/null
