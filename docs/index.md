@@ -56,4 +56,21 @@ You can find the full documentation [here](https://docs.docker.com/compose/insta
 
 See [Usage](usage.md) section.
 
+
+## Contributing
+
+Have a look at the [Contributing section](.github/CONTRIBUTING.md). If you have any question feel free to discuss about it on our [Gitter](https://gitter.im/ovh/ux).
+
+
+## Credits
+
+Based on the [`drupal-docker`](https://github.com/peperoni60/drupal-docker) project.
+
+Some of the containers are provided by Wodby.
+
+
+## License
+
+GPL 3.0 (original license)
+
 ---
