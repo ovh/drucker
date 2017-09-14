@@ -63,11 +63,11 @@ done
 
 ## PUBLIC_PMA_PORT
 while true; do
-  printf "\e[1mEnter the phpMyAdmin port:\e[0m (81) "
+  printf "\e[1mEnter the phpMyAdmin port:\e[0m (80) "
   read PUBLIC_PMA_PORT
 
   if [ -z $PUBLIC_PMA_PORT ]; then
-    PUBLIC_PMA_PORT=81
+    PUBLIC_PMA_PORT=80
   fi
 
   REGEX='^[0-9]+$';

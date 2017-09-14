@@ -35,6 +35,9 @@ The script will create your personal `drucker.config` file during installation (
 !!! success ""
     Now you can open the website at `http://www.*PROJECT_NAME_PLAIN*.local` (or `http://*SUBNET*.101` if you could not change /etc/hosts).
 
+!!! note ""
+    Change the `/etc/hosts` if you are root, in order to use hostnames instead of IPs.
+
 Here's the list of all domains/IPs:
 
 | Name      | Hostname                               | IP                  |

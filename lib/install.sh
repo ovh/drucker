@@ -17,8 +17,8 @@ cd "${DRUCKER_DIR}/lib"
 # load functions and environment variables
 . functions
 
-# No installation
-if [ $(find "$(docroot)" -prune -empty) ]; then
+# No init === no composer.json
+if [ ! -f "$(wwwdir)/composer.json" ]; then
     echo -e "\033[1;31m[ERROR]\033[0m Please execute \033[1mmake init\033[0m before."
     exit 1
 fi
@@ -51,9 +51,8 @@ while true; do
         -f "$(druckerdir)/lib/docker-compose.yml" \
         exec -T $DB_SERVICE mysql -u"${DB_DRUPAL_USER}" -p"${DB_DRUPAL_PASSWORD}" --execute="SHOW DATABASES LIKE '${DB_DRUPAL_DB}'")`
 
-    dbready="$(echo -e "${dbready}" | tr -d '[:space:]')"
-
-    if [ -z "${dbready}" ]; then
+    # @TOFIX: set+e here when we fix the set-e issue
+    if [ "$?" != 0 ] || [ -z "$(echo -e '${dbready}' | tr -d '[:space:]')" ]; then
         echo -n "."
         sleep 2
     else
