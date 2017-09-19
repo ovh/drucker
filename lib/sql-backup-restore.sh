@@ -64,7 +64,7 @@ while test $# -gt 0; do
     esac
 done
 
-if [ "${DUMP}" = false ] && [ "${RESTORE}" = false ]; then
+if [ "${DUMP}" = false ] && [ "${RESTORE}" = false ] && [ "${SANITIZE}" = false ]; then
     DUMP=true
     RESTORE=true
 fi
