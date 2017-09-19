@@ -99,16 +99,16 @@ done
 
 ## PHP_VERSION
 while true; do
-  printf "\e[1mEnter the PHP version:\e[0m (7.1) "
+  printf "\e[1mEnter the PHP version:\e[0m (7.0) "
   read PHP_VERSION
 
   if [ -z $PHP_VERSION ]; then
-    PHP_VERSION="7.1"
+    PHP_VERSION="7.0"
   fi
 
-  # @TOFIX: only PHP 7.1 for now
+  # @TOFIX: only PHP 7.0-1 for now
   # REGEX='^[0-9]+(\.[0-9]+)?$';
-  REGEX='^7\.1$';
+  REGEX='^7\.[0-1]$';
   if ! [[ $PHP_VERSION =~ $REGEX ]]; then
       echo "Invalid input. Please use only numbers."
   else
