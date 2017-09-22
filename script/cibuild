@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [$TRAVIS_PULL_REQUEST == "true"]; then
+  echo "From PR, exiting"
+  exit 0
+fi
+
+# enable error logging
+set -e
+
+git config --global user.email "kevin.bonduelle@corp.ovh.com"
+git config --global user.name "frisouilles"
+
+rm -rf _site
+mkdir _site
+
+git clone https://${GH_TOKEN}@github.com/ovh-ux/drucker.git --branch gh-pages _site
+
+bundle exec jekyll build
+
+# push
+cd _site
+git add --all
+git commit -am "Travis #$TRAVIS_BUILD_NUMBER"
+git push --force origin gh-pages

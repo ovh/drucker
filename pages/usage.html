@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="http://github.com/pages/ovh-ux/drucker/assets/ovh-ui-kit-bs.css">
+        <link rel="stylesheet" href="http://github.com/pages/ovh-ux/drucker/assets/main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title></title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="navbar col-md-3"
+                     id="navbar">
+                    
+
+<button type="button"
+        class="navbar__toggle hidden-md hidden-lg"
+        id="navbar-toggle">
+    <span class="navbar__icon">
+        <span class="navbar__icon-bar navbar__icon-bar--top"></span>
+        <span class="navbar__icon-bar navbar__icon-bar--middle"></span>
+        <span class="navbar__icon-bar navbar__icon-bar--bottom"></span>
+    </span>
+    <span class="navbar__title">Drucker - DRUpal doCKER dev environment</span>
+</button>
+
+<ul class="navbar__entries"
+    id="navbar-entries">
+    <span class="navbar__title hidden-xs hidden-sm">Drucker - DRUpal doCKER dev environment</span>
+    
+        <li class="navbar__entry">
+            <a class="navbar__link navbar__link--lvl-1"
+               href="http://github.com/pages/ovh-ux/drucker/">
+               
+                   
+                        <i class="navbar__link-chevron oui-icon oui-icon-chevron-right"
+                           aria-hidden="true"></i>
+                   
+               
+               
+                    <span>Home</span>
+               
+            </a>
+            
+                <ul class="navbar__subentries ">
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/index.html#prerequisites">
+                               <span>Prerequisites</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/index.html#usage">
+                               <span>Usage</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/index.html#credits">
+                               <span>Credits</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/index.html#license">
+                               <span>License</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+            
+        </li>
+    
+        <li class="navbar__entry">
+            <a class="navbar__link navbar__link--lvl-1"
+               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html">
+               
+                   
+                        <i class="navbar__link-chevron oui-icon oui-icon-chevron-down"
+                           aria-hidden="true"></i>
+                   
+               
+               
+                    <span class="navbar__link-active">Usage</span>
+                    <span class="navbar__link-active-icon"></span>
+               
+            </a>
+            
+                <ul class="navbar__subentries navbar__subentries--active">
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#overview">
+                               <span>Overview</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#quick-start">
+                               <span>Quick Start</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#makefile">
+                               <span>Makefile</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#loading-the-environment">
+                               <span>Loading the environment</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#directory-structure">
+                               <span>Directory structure</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#config">
+                               <span>Config</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#fresh-install-of-drupal-new-project">
+                               <span>Fresh install of Drupal (new project)</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#updating-drupal-core">
+                               <span>Updating Drupal Core</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#using-in-production">
+                               <span>Using in production</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/usage.html#containers-used">
+                               <span>Containers used</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+            
+        </li>
+    
+        <li class="navbar__entry">
+            <a class="navbar__link navbar__link--lvl-1"
+               href="http://github.com/pages/ovh-ux/drucker/pages/features.html">
+               
+                   
+                        <i class="navbar__link-chevron oui-icon oui-icon-chevron-right"
+                           aria-hidden="true"></i>
+                   
+               
+               
+                    <span>Features</span>
+               
+            </a>
+            
+                <ul class="navbar__subentries ">
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/features.html#logs">
+                               <span>Logs</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/features.html#multiple-projects">
+                               <span>Multiple projects</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/features.html#backup---full">
+                               <span>Backup - full</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/features.html#backup---sql-database-only">
+                               <span>Backup - SQL Database only</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/features.html#sql-sanitize">
+                               <span>SQL Sanitize</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/features.html#accessing-containers">
+                               <span>Accessing containers</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/features.html#module-patches">
+                               <span>Module patches</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+            
+        </li>
+    
+        <li class="navbar__entry">
+            <a class="navbar__link navbar__link--lvl-1"
+               href="http://github.com/pages/ovh-ux/drucker/pages/tools.html">
+               
+                   
+                        <i class="navbar__link-chevron oui-icon oui-icon-chevron-right"
+                           aria-hidden="true"></i>
+                   
+               
+               
+                    <span>Tools</span>
+               
+            </a>
+            
+                <ul class="navbar__subentries ">
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/tools.html#prerequisites">
+                               <span>Prerequisites</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/tools.html#php-cli">
+                               <span>PHP CLI</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/tools.html#drush">
+                               <span>Drush</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/tools.html#composer">
+                               <span>Composer</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/tools.html#drupal-console">
+                               <span>Drupal Console</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/tools.html#nodejs">
+                               <span>Node.js</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/tools.html#npmyarngulp">
+                               <span>NPM/Yarn/Gulp</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+            
+        </li>
+    
+        <li class="navbar__entry">
+            <a class="navbar__link navbar__link--lvl-1"
+               href="http://github.com/pages/ovh-ux/drucker/pages/troubleshooting.html">
+               
+                   
+                        <i class="navbar__link-chevron oui-icon oui-icon-chevron-right"
+                           aria-hidden="true"></i>
+                   
+               
+               
+                    <span>Troubleshooting</span>
+               
+            </a>
+            
+                <ul class="navbar__subentries ">
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/troubleshooting.html#network-ip-already-in-use">
+                               <span>Network: IP already in use</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/troubleshooting.html#network-why-ipv6-is-disabled">
+                               <span>Network: Why IPv6 is disabled?</span>
+                            </a>
+                        </li>
+                    
+                        <li class="navbar__entry">
+                            <a class="navbar__link navbar__link--lvl-2"
+                               href="http://github.com/pages/ovh-ux/drucker/pages/troubleshooting.html#command-not-found">
+                               <span>Command not found</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+            
+        </li>
+    
+</ul>
+
+                </nav>
+                <div class="content col-md-offset-3 col-md-9 col-lg-offset-4 col-lg-6">
+                    <h2 id="overview">Overview</h2>
+
+<p>These are the minimal steps to take if you set up and work with a project:</p>
+
+<ol>
+  <li>Create a new project (<strong>once</strong> per project)</li>
+  <li>Setup the environment (<strong>once</strong> per project)</li>
+  <li>Install Drupal and a drupal site (<strong>once</strong> per project)</li>
+  <li>Start/Stop the containers and use tools (regularly, as needed)</li>
+</ol>
+
+<p>If you run into troubles check the <a href="/pages/troubleshooting.html">Troubleshooting</a> section.</p>
+
+<h2 id="quick-start">Quick start</h2>
+
+<p class="alert alert-info">To setup a new project, see <a href="#fresh-install-of-drupal-new-project">Fresh install of Drupal</a> section below.</p>
+
+<p>To setup the environment in an existing project powered by Drucker, follow these commands:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd</span> &lt;name of the project&gt;
+<span class="c"># Initialize the Drucker Git submodule</span>
+<span class="gp">$ </span>git submodule init
+<span class="gp">$ </span>git submodule update
+<span class="c"># Install all the dependencies</span>
+<span class="gp">$ </span><span class="nb">cd </span>drucker
+<span class="gp">$ </span>make install
+<span class="c"># Run the stack</span>
+<span class="gp">$ </span>make start
+</code></pre>
+</div>
+
+<p>The script will create your personal <code class="highlighter-rouge">drucker.config</code> file during installation (see <a href="#config">Config</a> section).</p>
+
+<p class="alert alert-success">Now you can open the website at <code class="highlighter-rouge">http://www.*PROJECT_NAME_PLAIN*.local</code> (or <code class="highlighter-rouge">http://*SUBNET*.101</code> if you could not change /etc/hosts).</p>
+
+<p class="alert alert-info">Change the <code class="highlighter-rouge">/etc/hosts</code> if you are root, in order to use hostnames instead of IPs.</p>
+
+<p>Here’s the list of all domains/IPs:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Hostname</th>
+      <th>IP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PHP</td>
+      <td>http://php.<em>PROJECT_NAME_PLAIN</em>.local</td>
+      <td>http://<em>SUBNET</em>.100</td>
+    </tr>
+    <tr>
+      <td>WWW</td>
+      <td>http://www.<em>PROJECT_NAME_PLAIN</em>.local</td>
+      <td>http://<em>SUBNET</em>.101</td>
+    </tr>
+    <tr>
+      <td>DB</td>
+      <td>http://db.<em>PROJECT_NAME_PLAIN</em>.local</td>
+      <td>http://<em>SUBNET</em>.102</td>
+    </tr>
+    <tr>
+      <td>MAIL</td>
+      <td>http://mail.<em>PROJECT_NAME_PLAIN</em>.local</td>
+      <td>http://<em>SUBNET</em>.103</td>
+    </tr>
+    <tr>
+      <td>PMA</td>
+      <td>http://pma.<em>PROJECT_NAME_PLAIN</em>.local</td>
+      <td>http://<em>SUBNET</em>.104</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The default credentials for Drupal is:</p>
+
+<ul>
+  <li>Login: <code class="highlighter-rouge">admin</code></li>
+  <li>Password: <code class="highlighter-rouge">admin</code></li>
+</ul>
+
+<h2 id="makefile">Makefile</h2>
+
+<p>The <code class="highlighter-rouge">Makefile</code> contains all the shortcuts to use the environment:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">make help</code> : See all the available commands</li>
+  <li><code class="highlighter-rouge">make init</code> : Initialize a new fresh install of Drupal with Composer</li>
+  <li><code class="highlighter-rouge">make install</code> : Install all the deps and prerequisites</li>
+  <li><code class="highlighter-rouge">make start</code> : Start the application stack</li>
+  <li><code class="highlighter-rouge">make stop</code> : Stop the application stack</li>
+</ul>
+
+<h2 id="loading-the-environment">Loading the environment</h2>
+
+<p>Before any Drucker operation, you need to have variables loaded in your environment:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">cd </span>drucker
+<span class="gp">$ </span><span class="nb">source </span>load-env
+</code></pre>
+</div>
+
+<p>This will setup aliases to use in your bash environment, in your current session.</p>
+
+<p>Now, you can use some tools, like Drush or Composer, in a transparent way like if they are installed locally :).
+See <a href="/pages/tools.html">Tools</a> section for the full documentation of these tools.</p>
+
+<p class="alert alert-info"><strong>Tips</strong>: You have 2 folders shortcuts aliases:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">home</code> : to go directly inside the project dir</li>
+  <li><code class="highlighter-rouge">drucker</code> : to go directly inside the Drucker dir</li>
+</ul>
+
+<h2 id="directory-structure">Directory structure</h2>
+
+<p>During setup, the directory structure will become something like this:</p>
+
+<ul class="well">
+  <li><em>Project</em>
+    <ul>
+      <li><strong>drucker</strong>
+        <ul>
+          <li><strong>docker-runtime</strong>
+            <ul>
+              <li><strong>console</strong></li>
+              <li><strong>drush</strong></li>
+              <li><strong>drush-backups</strong></li>
+              <li><strong>log</strong></li>
+              <li><strong>mysql</strong></li>
+              <li><strong>mysql-init</strong></li>
+              <li><strong>sql-backups</strong></li>
+            </ul>
+          </li>
+          <li><strong>load-env</strong></li>
+          <li><strong>Makefile</strong></li>
+        </ul>
+      </li>
+      <li><strong>drucker.config</strong></li>
+      <li><strong>www</strong>
+        <ul>
+          <li><strong>config/sync</strong></li>
+          <li><strong>drush</strong></li>
+          <li><strong>scripts/composer</strong></li>
+          <li><strong>private</strong></li>
+          <li><strong>tmp</strong></li>
+          <li><strong>web</strong></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>The name of <strong><em>Project</em></strong> can be chosen as you like.</li>
+  <li><strong>drucker</strong> contains build files and utilities for Docker
+    <ul>
+      <li><strong>docker-runtime</strong> contains the runtime data (databases, configuration files and so on).</li>
+      <li><strong>load-env</strong> has to be sourced in your bash, to access to the main tools (like Drush, …)</li>
+      <li><strong>Makefile</strong> contains all useful commands to manage the stack</li>
+      <li>All others directories are used in scripts, don’t use them directly.</li>
+    </ul>
+  </li>
+  <li><strong>drucker.config</strong> is the configuration file for Drucker. This file is personal and must be GIT ignored.</li>
+  <li><strong>www</strong> and subsequent directories will be created automatically during installation
+    <ul>
+      <li><strong>config/sync</strong> is the folder to hold the Drupal configuration files (instead of sites/all/files/<em>some_config_dir</em>.</li>
+      <li><strong>drush</strong> is the directory that contains commands, configuration and site aliases for Drush. See <a href="https://packagist.org/search/?type=drupal-drush">this</a> for a directory of Drush commands installable via Composer.</li>
+      <li><strong>scripts/composer</strong> is a directory for holding the scripts from drupal-composer project</li>
+      <li><strong>private</strong> is a directory for holding the private files in Drupal, but outside the web root (<code class="highlighter-rouge">admin/config/media/file-system</code>, use <code class="highlighter-rouge">../private</code>, in D8: settings.php).</li>
+      <li><strong>tmp</strong> is a directory for temporary files. It can be used as tmp-directory in Drupal (<code class="highlighter-rouge">admin/config/media/file-system</code>, use <code class="highlighter-rouge">../tmp</code>)</li>
+      <li><strong>web</strong> is the webroot folder. Here all PHP-files and user created files will reside. See “Fresh install of Drupal”.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="config">Config</h2>
+
+<p>The configuration of the Drucker is inside the <code class="highlighter-rouge">drucker.config</code> file, in the root folder.</p>
+
+<p>With this variables, the names of all containers, networks and host/domainnames are built. They must be unique on the host machine.</p>
+
+<p>This file is automatically generated when you install or run the stack (using <a href="#makefile">Makefile</a>).</p>
+
+<p>!!! warning “”
+    This file is personal and must be GIT ignored!</p>
+
+<p>It contains some config variables:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">PROJECT_NAME</code> : The name of the project. Do not use whitespaces in the name! This will become the site name.</li>
+  <li><code class="highlighter-rouge">PROJECT_NAME_PLAIN</code> : Used to build the names of Images, Containers and Networks. You should supply a name that is unique within the your machine. It must consist of <strong>lower case letters</strong> and <strong>numbers</strong>, no hyphens, dots or underscores!</li>
+  <li><code class="highlighter-rouge">PUBLIC_WWW_PORT</code> : The website public port (80). Change it only if you share the same domain on the host (so, need to be unique).</li>
+  <li><code class="highlighter-rouge">PUBLIC_PMA_PORT</code> : The phpMyAdmin public port (80). Change it only if you share the same domain on the host (so, need to be unique).</li>
+  <li><code class="highlighter-rouge">SUBNET</code> : The private subnet of the network, the containers will run in. It must be unique within all your projects.</li>
+  <li><code class="highlighter-rouge">DRUPAL_VERSION</code> : The Drupal version (8)</li>
+  <li><code class="highlighter-rouge">PHP_VERSION</code> : The PHP version</li>
+  <li><code class="highlighter-rouge">PHP_XDEBUG_ENABLED</code> : Enable or not XDEBUG</li>
+  <li><code class="highlighter-rouge">NODE_VERSION</code> : The node.js version</li>
+</ul>
+
+<p>See <a href="/pages/features.html#multiple-projects">Features/Multiple-Projects</a> to know how to configure it for running multiple projects in parallel.</p>
+
+<p>!!! note “”
+    You can (re-)generate it using <code class="highlighter-rouge">make gen-config</code>.</p>
+
+<h2 id="fresh-install-of-drupal-new-project">Fresh install of Drupal (new project)</h2>
+
+<p>The Drupal will be installed with Composer, using <a href="https://github.com/drupal-composer/drupal-project">drupal-composer</a> project.</p>
+
+<p>To create a new project using Drucker, follow these commands:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c"># Create an empty folder for your project</span>
+<span class="gp">$ </span>mkdir &lt;name of the project&gt;
+<span class="gp">$ </span><span class="nb">cd</span> &lt;name of the project&gt;
+<span class="c"># Initialize an empty GIT project</span>
+<span class="gp">$ </span>git init
+<span class="c"># Add Drucker in your project, as a Git submodule</span>
+<span class="gp">$ </span>git submodule add https://github.com/ovh-ux/drucker.git drucker
+<span class="c"># Launch a fresh install of Drupal</span>
+<span class="gp">$ </span><span class="nb">cd </span>drucker
+<span class="gp">$ </span>make init
+<span class="c"># Install all the dependencies</span>
+<span class="gp">$ </span>make install
+<span class="c"># Run the stack</span>
+<span class="gp">$ </span>make start
+</code></pre>
+</div>
+
+<p>When installing the given <code class="highlighter-rouge">composer.json</code> some tasks are taken care of:</p>
+
+<ul>
+  <li>Drupal will be installed in the <code class="highlighter-rouge">web</code>-directory.</li>
+  <li>Autoloader is implemented to use the generated composer autoloader in <code class="highlighter-rouge">vendor/autoload.php</code>, instead of the one provided by Drupal (<code class="highlighter-rouge">web/vendor/autoload.php</code>).</li>
+  <li>Modules (packages of type <code class="highlighter-rouge">drupal-module</code>) will be placed in <code class="highlighter-rouge">web/modules/contrib/</code></li>
+  <li>Theme (packages of type <code class="highlighter-rouge">drupal-theme</code>) will be placed in <code class="highlighter-rouge">web/themes/contrib/</code></li>
+  <li>Profiles (packages of type <code class="highlighter-rouge">drupal-profile</code>) will be placed in <code class="highlighter-rouge">web/profiles/contrib/</code></li>
+  <li>Creates default writable versions of <code class="highlighter-rouge">settings.php</code> and <code class="highlighter-rouge">services.yml</code>.</li>
+  <li>Creates <code class="highlighter-rouge">web/sites/default/files</code>-directory.</li>
+</ul>
+
+<p>!!! warning “”
+    All the contrib folders and settings files must be GIT ignored.</p>
+
+<h2 id="updating-drupal-core">Updating Drupal Core</h2>
+
+<p>Follow the steps to update your core files <a href="https://github.com/drupal-composer/drupal-project#updating-drupal-core">here</a>.</p>
+
+<h2 id="using-in-production">Using in production</h2>
+
+<p>Drucker is a development environment only. DO NOT USE IT IN PRODUCTION.</p>
+
+<h2 id="containers-used">Containers used</h2>
+
+<p>The Drucker stack consist of the following containers:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Container</th>
+      <th>Versions</th>
+      <th>Service name</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nginx</td>
+      <td>1.13</td>
+      <td>nginx</td>
+      <td>[wodby/drupal-nginx]</td>
+    </tr>
+    <tr>
+      <td>Apache</td>
+      <td>2.4</td>
+      <td>apache</td>
+      <td>[wodby/drupal-apache]</td>
+    </tr>
+    <tr>
+      <td>Drupal</td>
+      <td>8</td>
+      <td>php</td>
+      <td>[wodby/drupal]</td>
+    </tr>
+    <tr>
+      <td>PHP</td>
+      <td>7.1, 7.0</td>
+      <td>php</td>
+      <td>[wodby/drupal-php]</td>
+    </tr>
+    <tr>
+      <td>MariaDB</td>
+      <td>10.1</td>
+      <td>mariadb</td>
+      <td>[wodby/drupal-mariadb]</td>
+    </tr>
+    <tr>
+      <td>Mailhog</td>
+      <td>latest</td>
+      <td>mailhog</td>
+      <td>[mailhog]</td>
+    </tr>
+    <tr>
+      <td>phpMyAdmin</td>
+      <td>latest</td>
+      <td>pma</td>
+      <td>[phpmyadmin]</td>
+    </tr>
+    <tr>
+      <td>Node.js</td>
+      <td>8, 8-alpine</td>
+      <td>node</td>
+      <td>[node]</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Some of the containers are overrided, see <code class="highlighter-rouge">lib/docker-images</code>.</p>
+
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="http://github.com/pages/ovh-ux/drucker/assets/js/scripts.js"></script>
+    </body>
+</html>
