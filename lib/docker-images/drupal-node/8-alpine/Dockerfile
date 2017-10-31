@@ -1,7 +1,7 @@
 FROM node:8-alpine
 MAINTAINER OVH-UX <github@ovh.net>
 
-RUN echo http://dl-2.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
+RUN echo http://dl.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
 
 RUN apk add --update --no-cache build-base make gcc g++ python git tini
 
