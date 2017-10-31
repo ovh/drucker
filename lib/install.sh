@@ -28,7 +28,7 @@ fi
 
 # docker build custom images
 echo "Building custom images..."
-docker build -t "${NODE_IMAGE}" "${NODE_CONTEXT}" --no-cache
+docker build -t "${NODE_IMAGE}" "${NODE_CONTEXT}" --no-cache --pull
 
 # Install vendor
 echo "Installing dependencies..."

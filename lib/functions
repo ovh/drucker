@@ -101,16 +101,19 @@ function _php()
         docker-compose \
             --project-name "$PROJECT_NAME_PLAIN" \
             -f "$(druckerdir)/lib/docker-compose.yml" \
-            exec $PHP_SERVICE su-exec $WWW_USER "${@}"
+            exec \
+            -u "${WWW_USER}"  \
+            $PHP_SERVICE "${@}"
     else
         docker-compose \
             --project-name "$PROJECT_NAME_PLAIN" \
             -f "$(druckerdir)/lib/docker-compose.yml" \
             run \
             --name="${PROJECT_NAME_PLAIN}_tmp_php_$(date +%H%M%S)" \
+            -u "${WWW_USER}" \
             --rm \
             --workdir="$(web_docroot)" \
-            $PHP_SERVICE su-exec $WWW_USER "${@}"
+            $PHP_SERVICE "${@}"
     fi
 }
 
