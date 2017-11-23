@@ -17,7 +17,7 @@ DRUCKER_DIR="$(dirname $(pwd))"              # druckerdir: father of this folder
 PROJECT_DIR="$(dirname "${DRUCKER_DIR}")"    # projectdir: grand-father of this folder
 
 # Load the environment without creating the docker environment file
-. ./environment > /dev/null
+source ./environment > /dev/null
 # Create the environment file for docker and docker-compose
 env -i ./environment | grep -v "_=" | sort > .docker.env
 

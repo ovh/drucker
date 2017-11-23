@@ -6,7 +6,7 @@
 # No set-e because it's a sourced file
 
 # Load Drucker config
-. "../../drucker.config" > /dev/null
+source "../../drucker.config" > /dev/null
 
 domain=${PROJECT_NAME}.local
 unset SUBDOMAINS
@@ -69,17 +69,19 @@ export PMA_NAME="${PROJECT_NAME_PLAIN}_${service}"
 export PMA_IMAGE="phpmyadmin/phpmyadmin"
 SUBDOMAINS+="${service} "
 
+# network
 export NET_SUBNET="${SUBNET}.0/24"
 export NET_GATEWAY="${SUBNET}.1"
-i=100 # first IP address (fourth octett)
-typeset -u prefix_u
-typeset -l prefix_l
-for prefix_u in $SUBDOMAINS; do
-    prefix_l="${prefix_u}"
-    export ${prefix_u}_IP="${SUBNET}.$i"
-    export ${prefix_u}_DOMAIN="${prefix_l}.${domain}"
-    (( i++ ))
-done
+export PHP_IP="${SUBNET}.100"
+export PHP_DOMAIN="php.${domain}"
+export WWW_IP="${SUBNET}.101"
+export WWW_DOMAIN="www.${domain}"
+export DB_IP="${SUBNET}.102"
+export DB_DOMAIN="db.${domain}"
+export MAIL_IP="${SUBNET}.103"
+export MAIL_DOMAIN="mail.${domain}"
+export PMA_IP="${SUBNET}.104"
+export PMA_DOMAIN="pma.${domain}"
 
 # Echo the values set above to create an environment file for use by Docker:
 unset PWD SHLVL
