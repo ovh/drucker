@@ -112,7 +112,7 @@ During setup, the directory structure will become something like this:
             * **private**
             * **tmp**
             * **web**
-            
+
 * The name of ***Project*** can be chosen as you like.
 * **drucker** contains build files and utilities for Docker
     * **docker-runtime** contains the runtime data (databases, configuration files and so on).
@@ -202,6 +202,7 @@ When installing the given `composer.json` some tasks are taken care of:
 
 Follow the steps to update your core files [here](https://github.com/drupal-composer/drupal-project#updating-drupal-core).
 
+
 ---
 
 ## Using in production
@@ -216,14 +217,14 @@ The Drucker stack consist of the following containers:
 
 | Container | Versions | Service name | Image |
 | --------- | -------- | ------------ | ----- |
-| Nginx               | 1.13               | nginx     | [wodby/drupal-nginx]   
-| Apache              | 2.4                | apache    | [wodby/drupal-apache]  
-| Drupal              | 8                  | php       | [wodby/drupal]         
-| PHP                 | 7.1, 7.0           | php       | [wodby/drupal-php]     
-| MariaDB             | 10.1               | mariadb   | [wodby/drupal-mariadb]        
-| Mailhog             | latest             | mailhog   | [mailhog]              
-| phpMyAdmin          | latest             | pma       | [phpmyadmin]               
-| Node.js             | 8, 8-alpine        | node      | [node]    
+| Nginx               | 1.13               | nginx     | [wodby/drupal-nginx]
+| Apache              | 2.4                | apache    | [wodby/drupal-apache]
+| Drupal              | 8                  | php       | [wodby/drupal]
+| PHP                 | 7.1, 7.0           | php       | [wodby/drupal-php]
+| MariaDB             | 10.1               | mariadb   | [wodby/drupal-mariadb]
+| Mailhog             | latest             | mailhog   | [mailhog]
+| phpMyAdmin          | latest             | pma       | [phpmyadmin]
+| Node.js             | 8, 8-alpine        | node      | [node]
 
 Some of the containers are overrided, see `lib/docker-images`.
 

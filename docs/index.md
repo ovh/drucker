@@ -26,6 +26,8 @@ An environnement where you can have the following features:
 - Docker
 - Docker-compose
 
+Note: You can use Virtualbox+Vagrant to have an environment ready, see [below](#vagrant).
+
 ### Docker
 
 You can find the installation instructions [here](https://docs.docker.com/engine/installation).
@@ -50,6 +52,37 @@ $ docker-compose --version
 This script is provided by the Docker-compose team and will download the official image at the first launch and build it.
 
 You can find the full documentation [here](https://docs.docker.com/compose/install).
+
+---
+
+## Vagrant
+
+You can use Vagrant to launch a compatible environment in a Virtualbox.
+
+First, you need to install all the prerequisites:
+
+```bash
+# First, install Vagrant and Virtualbox:
+$ sudo apt-get install -y virtualbox vagrant
+$ virtualbox --version
+$ vagrant --version
+# Then, install the required plugins:
+$ vagrant plugin install vagrant-vbguest
+$ vagrant plugin install vagrant-bindfs
+```
+
+You can now launch it:
+
+```bash
+# Don't forget to launch `ssh-add` before, in order to use the same SSH keys inside your Vagrant:
+$ ssh-add
+# Then, launch it:
+$ vagrant up
+# You can now access to your Vagrant:
+$ vagrant ssh
+```
+
+In the `drucker.config`, you need to use the ports `80` and `81`. They will be forwarded to the ports `8080` and `8081`.
 
 
 ## Usage
