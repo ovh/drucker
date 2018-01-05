@@ -34,6 +34,10 @@ docker build -t "${NODE_IMAGE}" "${NODE_CONTEXT}" --no-cache --pull
 echo "Installing dependencies..."
 composer install
 
+# Run drupal-scaffold
+echo "Running Drupal-scaffold..."
+composer run-script drupal-scaffold
+
 # Install and build custom themes
 echo "Building custom themes..."
 ./compile-themes.sh || warnings+=("Something goes wrong when compiling themes. Please try to compile them by yourself.")

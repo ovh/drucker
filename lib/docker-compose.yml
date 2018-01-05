@@ -5,6 +5,11 @@ services:
   db:
     container_name: $DB_NAME
     image: $DB_IMAGE
+    build:
+      context: $DB_IMAGE_CONTEXT
+      args:
+        DOCKER_USER: $DOCKER_USER
+        DOCKER_USER_GROUP: $DOCKER_USER_GROUP
     environment:
       MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
       MYSQL_DATABASE: $DB_DRUPAL_DB

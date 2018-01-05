@@ -41,7 +41,8 @@ export DB_SERVICE="${service}"
 # the container name:
 export DB_NAME="${PROJECT_NAME_PLAIN}_${service}"
 # the image to build the container from:
-export DB_IMAGE="wodby/drupal-mariadb"
+export DB_IMAGE="ovh/drupal-mariadb:1.0.0"
+export DB_IMAGE_CONTEXT="./docker-images/drupal-mariadb/1.0.0"
 # the db root password:
 export DB_ROOT_PASSWORD="drootpal"
 # credentials for the Drupal database:
