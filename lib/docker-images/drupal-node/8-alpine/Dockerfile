@@ -1,9 +1,8 @@
 FROM node:8-alpine
 MAINTAINER OVH-UX <github@ovh.net>
 
-RUN echo http://dl.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
-
-RUN apk add --update --no-cache build-base make gcc g++ python git tini
+RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community/ >> /etc/apk/repositories
+RUN apk update && apk --no-cache add shadow build-base make gcc g++ python git tini
 
 RUN npm set progress=false && npm install -gq gulp-cli grunt-cli bower yo
 
