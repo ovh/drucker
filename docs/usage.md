@@ -68,29 +68,31 @@ $ source load-env
 This will setup aliases to use in your bash environment, in your current session.
 
 You can now use the command drucker to manipulate the project:
-   - drucker init                : Perform a fresh install of Drupal
-   - drucker install             : Launch the installation of all dependencies
-   - drucker start               : Launch the stack
-   - drucker stop                : Stop the stack
-   - drucker logs                : Show all the logs in real time
-   - drucker dblog               : Show all the DB log (from Drupal) in real time
-   - drucker gen-config          : Generate a new Drucker config file
-   - drucker backup              : Create a backup of the whole site (db and files)
-   - drucker restore             : Restore the whole site (db and files)
-   - drucker sql-backup-restore  : Create a backup and a restore of a database
-   - drucker sql-backup          : Create a backup of a database
-   - drucker sql-restore         : Restore a database
-   - drucker sql-sanitize        : Sanitize the current database
+
+- `drucker init`                : Perform a fresh install of Drupal
+- `drucker install`             : Launch the installation of all dependencies
+- `drucker start`               : Launch the stack
+- `drucker stop`                : Stop the stack
+- `drucker logs`                : Show all the logs in real time
+- `drucker dblog`               : Show all the DB log (from Drupal) in real time
+- `drucker gen-config`          : Generate a new Drucker config file
+- `drucker backup`              : Create a backup of the whole site (db and files)
+- `drucker restore`             : Restore the whole site (db and files)
+- `drucker sql-backup-restore`  : Create a backup and a restore of a database
+- `drucker sql-backup`          : Create a backup of a database
+- `drucker sql-restore`         : Restore a database
+- `drucker sql-sanitize`        : Sanitize the current database
 
 You can alose use some tools, like Drush or Composer, in a transparent way like if they are installed locally:
-   - php       : to open a shell in the php container, as user 1000
-   - drush     : to call drush in the php container, as user 1000
-   - drupal    : to call the drupal console in the php container, as user 1000
-   - composer  : to call composer in the php container, as user 1000
-   - node      : to create a node.js container and execute a node.js command
-   - npm       : to create a node.js container and execute a npm command
-   - yarn      : to create a node.js container and execute a yarn command
-   - gulp      : to create a node.js container and execute a gulp command
+
+- `php`       : to open a shell in the php container, as user 1000
+- `drush`     : to call drush in the php container, as user 1000
+- `drupal`    : to call the drupal console in the php container, as user 1000
+- `composer`  : to call composer in the php container, as user 1000
+- `node`      : to create a node.js container and execute a node.js command
+- `npm`       : to create a node.js container and execute a npm command
+- `yarn`      : to create a node.js container and execute a yarn command
+- `gulp`      : to create a node.js container and execute a gulp command
 
 See [Tools](tools.md) section for the full documentation of these tools.
 
