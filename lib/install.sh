@@ -71,6 +71,8 @@ while true; do
     fi
 done
 
+ensure_default_settings_writable
+
 # Install Drupal
 if [ -e "$(projectdir)/www/config/sync/system.site.yml" ]; then
 
@@ -81,8 +83,6 @@ if [ -e "$(projectdir)/www/config/sync/system.site.yml" ]; then
         warnings+=("The module config_installer was not installed, so it's now added to your dev dependencies.")
         composer require --dev drupal/config_installer
     fi
-
-    ensure_default_settings_writable
 
     # Install from config
     echo "Installing Drupal with config_installer (from config files)..."
