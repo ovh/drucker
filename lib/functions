@@ -276,7 +276,7 @@ function drucker()
         "${DRUCKER_DIR}"/lib/docker-compose-utils.sh action="logs"
         ;;
     "dblog")
-        drush watchdog-show --count=20 --extended --tail --sleep-delay=2
+        drush watchdog-show --count=20 --extended    # Drush8: --tail --sleep-delay=2
         ;;
     "gen-config")
         "${DRUCKER_DIR}"/lib/gen-config.sh
