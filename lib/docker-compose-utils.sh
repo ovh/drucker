@@ -47,7 +47,7 @@ export DOCKER_RUN_OPTIONS="--name=${PROJECT_NAME_PLAIN}_startup"
 case "$ACTION" in
 "build")
     echo -e "Build \033[1m$PROJECT_NAME\033[0m project..."
-    docker-compose --project-name "$PROJECT_NAME_PLAIN" -f "$(druckerdir)/lib/docker-compose.yml" build --no-cache
+    docker-compose --project-name "$PROJECT_NAME_PLAIN" -f "$(druckerdir)/lib/docker-compose.yml" build
     ;;
 "up"|"start")
     echo -e "Start \033[1m$PROJECT_NAME\033[0m project"

@@ -25,7 +25,7 @@ newBranch=`git name-rev --name-only $newHEAD`
 if [ -z "$(type -t "drush")" ]; then
     echo -e "\033[0;31m/!\\ ERROR: The Drucker stack is not running or you're not into the right environment.\033[0m"
     echo "You must execute this script manually before doing anything, otherwise it'll cause side effects!"
-    echo "  - start the Drucker stack (make start)"
+    echo "  - start the Drucker stack (drucker start)"
     echo "  - run: ./sql-backup-restore.sh --backup=\"${prevBranch}\" --restore=\"${newBranch}\""
     exit 1;
 fi

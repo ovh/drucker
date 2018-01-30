@@ -23,6 +23,19 @@ env -i ./environment | grep -v "_=" | sort > .docker.env
 
 popd > /dev/null
 
+# @function check_project_dir
+#           Checks if launched command is inside the current project dir
+function check_project_dir ()
+{
+    if case "$(pwd)" in "${PROJECT_DIR}"*) false;; *) true;; esac; then
+        echo -e "\033[1;33m[WARNING]\033[0m You're not inside the project dir where you've loaded the env."
+        echo -en "\033[1;33m[WARNING]\033[0m Changing directory to ${PROJECT_DIR}... "
+        cd "${PROJECT_DIR}"
+        sleep 1
+        echo "Done."
+    fi
+}
+
 # @function projectdir
 #           returns the path of the project dir
 function projectdir ()
@@ -86,6 +99,8 @@ function tty_option() {
 # @usage    _php [commands...]
 function _php()
 {
+    check_project_dir
+
     # Check if docker-compose is running
     dcrunning=`(docker-compose \
         --project-name "$PROJECT_NAME_PLAIN" \
@@ -166,15 +181,25 @@ function composer()
     _php composer --working-dir="$(web_wwwdir)" "${@}"
 }
 
+# @function node_ports
+#           returns node ports to map
+# @usage    node_ports
+function node_ports() {
+    if [ ! -z "${NODE_BROWSERSYNC_PORT}" ]; then
+        echo "-p ${NODE_BROWSERSYNC_PORT}:3050";
+    fi
+}
+
 function node()
 {
     docker run \
         --interactive \
         $(tty_option) \
         --rm \
+        $(node_ports) \
         --volume="$(pwd)":/usr/src/app \
         --workdir=/usr/src/app \
-        --user="${WWW_USER}" \
+        --user="${WWW_USER}:${WWW_USER_GROUP}" \
         --name="${PROJECT_NAME_PLAIN}_tmp_node_$(date +%H%M%S)" \
         ${NODE_IMAGE} \
         \
@@ -187,9 +212,10 @@ function npm()
         --interactive \
         $(tty_option) \
         --rm \
+        $(node_ports) \
         --volume="$(pwd)":/usr/src/app \
         --workdir=/usr/src/app \
-        --user="${WWW_USER}" \
+        --user="${WWW_USER}:${WWW_USER_GROUP}" \
         --name="${PROJECT_NAME_PLAIN}_tmp_npm_$(date +%H%M%S)" \
         ${NODE_IMAGE} \
         \
@@ -202,9 +228,10 @@ function yarn()
         --interactive \
         $(tty_option) \
         --rm \
+        $(node_ports) \
         --volume="$(pwd)":/usr/src/app \
         --workdir=/usr/src/app \
-        --user="${WWW_USER}" \
+        --user="${WWW_USER}:${WWW_USER_GROUP}" \
         --name="${PROJECT_NAME_PLAIN}_tmp_yarn_$(date +%H%M%S)" \
         ${NODE_IMAGE} \
         \
@@ -217,21 +244,92 @@ function gulp()
         --interactive \
         $(tty_option) \
         --rm \
+        $(node_ports) \
         --volume="$(pwd)":/usr/src/app \
         --workdir=/usr/src/app \
-        --user="${WWW_USER}" \
+        --user="${WWW_USER}:${WWW_USER_GROUP}" \
         --name="${PROJECT_NAME_PLAIN}_tmp_gulp_$(date +%H%M%S)" \
         ${NODE_IMAGE} \
         \
         gulp "${@}"
 }
 
+function drucker()
+{
+
+    check_project_dir
+
+    case "${@}" in
+    "init")
+        "${DRUCKER_DIR}"/lib/init.sh
+        ;;
+    "install")
+        "${DRUCKER_DIR}"/lib/install.sh
+        ;;
+    "start")
+        "${DRUCKER_DIR}"/lib/docker-compose-utils.sh action="start" -d
+        ;;
+    "stop")
+        "${DRUCKER_DIR}"/lib/docker-compose-utils.sh action="stop"
+        ;;
+    "logs")
+        "${DRUCKER_DIR}"/lib/docker-compose-utils.sh action="logs"
+        ;;
+    "dblog")
+        drush watchdog-show --count=20 --extended    # Drush8: --tail --sleep-delay=2
+        ;;
+    "gen-config")
+        "${DRUCKER_DIR}"/lib/gen-config.sh
+        ;;
+    "backup")
+        echo "You can use:"
+        echo "  - drush archive-dump  : For a full backup (files and database)"
+        echo "  - drucker sql-backup  : For a backup of the database only"
+        ;;
+    "restore")
+        echo "You can use:"
+        echo "  - drush archive-restore --overwrite /home/www-data/drush-backups/archive-dump/path/to/backup  : To restore a full backup (files and database)"
+        echo "  - drucker sql-restore : To restore a backup of the database only"
+        ;;
+    "sql-backup-restore")
+        "${DRUCKER_DIR}"/lib/sql-backup-restore.sh
+        ;;
+    "sql-backup")
+        "${DRUCKER_DIR}"/lib/sql-backup-restore.sh --backup -y
+        ;;
+    "sql-restore")
+        "${DRUCKER_DIR}"/lib/sql-backup-restore.sh --restore -y
+        ;;
+    "sql-sanitize")
+        "${DRUCKER_DIR}"/lib/sql-backup-restore.sh --sanitize -y
+        ;;
+    *)
+        fhelp
+    esac
+}
+
 function fhelp()
 {
     printf "\
+
 ################################################################################
  Welcome to your project \e[1m${PROJECT_NAME}\e[0m, powered by \e[1;34m\e[1mDrucker\e[0m!
 --------------------------------------------------------------------------------
+ You can now use the command \e[1mdrucker\e[0m to manipulate the project:
+   - \e[1mdrucker init\e[0m                : Perform a fresh install of Drupal
+   - \e[1mdrucker install\e[0m             : Launch the installation of all dependencies
+   - \e[1mdrucker start\e[0m               : Launch the stack
+   - \e[1mdrucker stop\e[0m                : Stop the stack
+   - \e[1mdrucker logs\e[0m                : Show all the logs in real time
+   - \e[1mdrucker dblog\e[0m               : Show all the DB log (from Drupal) in real time
+   - \e[1mdrucker gen-config\e[0m          : Generate a new Drucker config file
+   - \e[1mdrucker backup\e[0m              : Create a backup of the whole site (db and files)
+   - \e[1mdrucker restore\e[0m             : Restore the whole site (db and files)
+   - \e[1mdrucker sql-backup-restore\e[0m  : Create a backup and a restore of a database
+   - \e[1mdrucker sql-backup\e[0m          : Create a backup of a database
+   - \e[1mdrucker sql-restore\e[0m         : Restore a database
+   - \e[1mdrucker sql-sanitize\e[0m        : Sanitize the current database
+
  You can use following commands to call dockerized utilities:
    - \e[1mphp\e[0m       : to open a shell in the php container, as user ${WWW_USER}
    - \e[1mdrush\e[0m     : to call drush in the php container, as user ${WWW_USER}
@@ -243,13 +341,13 @@ function fhelp()
    - \e[1mgulp\e[0m      : to create a node.js container and execute a gulp command
 
  Additional commands:
-   - \e[1mhome\e[0m      : to go inside the project dir
-   - \e[1mdrucker\e[0m   : to go inside the Drucker dir
+   - \e[1mhome\e[0m  : to go inside the project dir
 
  Notes:
    - php, drush, drupal, and composer are run in the docroot dir
    - node, npm, yarn, and gulp are run in the current dir
 ################################################################################
+
 "
 }
 
@@ -267,6 +365,9 @@ FLUSH PRIVILEGES;
 EOF
 }
 
+# alias for the main entrypoint
+alias drucker=drucker
+
 # set aliases to invoke some tools in a container
 alias php=php # if scripts require an alias instead
 alias drush=drush # drush.complete.sh requires an alias, does not act on functions
@@ -279,7 +380,6 @@ alias gulp=gulp # if scripts require an alias
 
 # aliases for convenience
 alias home="cd $(projectdir)"
-alias drucker="cd $(druckerdir)"
 
 # prepare the directories to set ownership and access rights and to avoid scripts complaining about missing folders
 old_umask=$(umask)
