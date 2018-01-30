@@ -17,9 +17,15 @@ cd "${DRUCKER_DIR}/lib"
 # load functions and environment variables
 . functions
 
+function ensure_default_settings_writable() {
+    # Set write permissions to default dir, to be able to alter it here
+    chmod u+w "$(projectdir)/www/web/sites/default"
+    chmod u+w "$(projectdir)/www/web/sites/default/settings.php"
+}
+
 # No init === no composer.json
 if [ ! -f "$(wwwdir)/composer.json" ]; then
-    echo -e "\033[1;31m[ERROR]\033[0m Please execute \033[1mmake init\033[0m before."
+    echo -e "\033[1;31m[ERROR]\033[0m Please execute \033[1mdrucker init\033[0m before."
     exit 1
 fi
 
@@ -65,10 +71,6 @@ while true; do
     fi
 done
 
-# Set write permissions to default dir, to be able to alter it here
-chmod u+w "$(projectdir)/www/web/sites/default"
-chmod u+w "$(projectdir)/www/web/sites/default/settings.php"
-
 # Install Drupal
 if [ -e "$(projectdir)/www/config/sync/system.site.yml" ]; then
 
@@ -79,6 +81,8 @@ if [ -e "$(projectdir)/www/config/sync/system.site.yml" ]; then
         warnings+=("The module config_installer was not installed, so it's now added to your dev dependencies.")
         composer require --dev drupal/config_installer
     fi
+
+    ensure_default_settings_writable
 
     # Install from config
     echo "Installing Drupal with config_installer (from config files)..."
@@ -106,6 +110,8 @@ else
     echo "Exporting config from fresh install..."
     drush cex -y
 fi
+
+ensure_default_settings_writable
 
 # Create settings.local.php
 if [ ! -e "$(projectdir)/www/web/sites/default/settings.local.php" ]; then
