@@ -41,4 +41,3 @@ sftp-config.json
 
 # Drucker config
 /drucker.config
-/www/config/sql/

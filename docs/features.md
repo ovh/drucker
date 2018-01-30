@@ -2,12 +2,13 @@
 
 You can access all the containers logs, using these commands:
 ```bash
-$ cd drucker
-$ make logs
+$ drucker logs
 ```
 
-!!! note ""
-    You can also check all Drupal logs, inside the admin page `/admin/reports/dblog`.
+You can also check all Drupal logs, inside the admin page `/admin/reports/dblog`, or using:
+```bash
+$ drucker dblog
+```
 
 ---
 
@@ -29,13 +30,13 @@ Example:
     - `PROJECT_NAME=Project1` and `PROJECT_NAME_PLAIN=project1`
     - `PUBLIC_WWW_PORT=19580` and `PUBLIC_PMA_PORT=19581`
     - `SUBNET=172.16.1`
-    - You can open a *separated* bash and run `cd <project1>; cd drucker; source load-env; make start`.
+    - You can open a *separated* bash and run `cd <project1>; cd drucker; source load-env; drucker start`.
     - -> your website will be accessible with the URL: `http://localhost:19580` (and `http://localhost:19581`)
   - **project2**:
     - `PROJECT_NAME=Project2` and `PROJECT_NAME_PLAIN=project2`
     - `PUBLIC_WWW_PORT=19590` and `PUBLIC_PMA_PORT=19591`
     - `SUBNET=172.16.2`
-    - You can open a *separated* bash and run `cd <project2>; cd drucker; source load-env; make start`.
+    - You can open a *separated* bash and run `cd <project2>; cd drucker; source load-env; drucker start`.
     - -> your website will be accessible with the URL: `http://localhost:19590` (and `http://localhost:19591`)
 
 ---
@@ -63,16 +64,14 @@ Replace the `path/to/backup` by the path of the archive contained inside `drucke
 
 You can create a backup of the SQL database only (so, without files), using these commands:
 ```bash
-$ cd drucker
-$ make sql-backup
+$ drucker sql-backup
 # prompt: enter the name of the backup
 ```
 The backup will be stored inside `drucker/docker-runtime/sql-backups`.
 
 You can then restore a backup using these commands:
 ```bash
-$ cd drucker
-$ make sql-restore
+$ drucker sql-restore
 # prompt: enter the name of the backup to restore
 ```
 
@@ -86,8 +85,7 @@ $ make sql-restore
 
 You can sanitize the current database, using these commands:
 ```bash
-$ cd drucker
-$ make sql-sanitize
+$ drucker sql-sanitize
 ```
 
 This will reset all password accounts and emails.

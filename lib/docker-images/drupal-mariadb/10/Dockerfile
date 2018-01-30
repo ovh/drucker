@@ -1,14 +1,18 @@
-FROM wodby/drupal-mariadb:1.0.0
+FROM wodby/mariadb:10
 MAINTAINER OVH-UX <github@ovh.net>
 
 ARG DOCKER_USER=1000
 ARG DOCKER_USER_GROUP=1001
 
-RUN echo http://dl-cdn.alpinelinux.org/alpine/edge/community/ > /etc/apk/repositories
+USER root
 RUN apk update && apk --no-cache add shadow
 
 # Override permissions with user/group of the host
 RUN usermod -u $DOCKER_USER mysql && groupmod -g $DOCKER_USER_GROUP mysql
 RUN chown -R mysql:mysql /var/run/mysqld/
+## Change files with old uid/gid
+RUN find / -group 101 -exec chgrp -h $DOCKER_USER_GROUP {} \; && find / -user 100 -exec chown -h $DOCKER_USER {} \;
 
-ENTRYPOINT ["docker-entrypoint.sh", "mysqld", "--user=mysql", "--console"]
+USER mysql
+
+ENTRYPOINT ["/docker-entrypoint.sh", "mysqld", "--user=mysql", "--console"]

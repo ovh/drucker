@@ -78,6 +78,23 @@ while true; do
   fi
 done
 
+## SUBNET
+while true; do
+  printf "\e[1mEnter the network subnet:\e[0m (172.16.1) "
+  read SUBNET
+
+  if [ -z $SUBNET ]; then
+    SUBNET="172.16.1"
+  fi
+
+  REGEX='^[0-9]+\.[0-9]+\.[0-9]+$';
+  if ! [[ $SUBNET =~ $REGEX ]]; then
+      echo "Invalid input. Please use a right subnet (like '172.16.1')."
+  else
+      break;
+  fi
+done
+
 ## DRUPAL_VERSION
 while true; do
   printf "\e[1mEnter the Drupal version:\e[0m (8) "
@@ -138,40 +155,73 @@ while true; do
   fi
 done
 
-## SUBNET
-while true; do
-  printf "\e[1mEnter the network subnet:\e[0m (172.16.1) "
-  read SUBNET
+# Additional XDEBUG variables
+PHP_XDEBUG_REMOTE_HOST="localhost"
+PHP_XDEBUG_REMOTE_PORT="9000"
+if [ "${PHP_XDEBUG_ENABLED}" == 1 ]; then
 
-  if [ -z $SUBNET ]; then
-    SUBNET="172.16.1"
-  fi
+  ## PHP_XDEBUG_REMOTE_HOST
+  while true; do
+    printf "\e[1mEnter the XDEBUG remote host:\e[0m "
+    read PHP_XDEBUG_REMOTE_HOST
 
-  REGEX='^[0-9]+\.[0-9]+\.[0-9]+$';
-  if ! [[ $SUBNET =~ $REGEX ]]; then
-      echo "Invalid input. Please use a right subnet (like '172.16.1')."
-  else
-      break;
-  fi
-done
+    REGEX='^[a-z0-9_.-]+$';
+    if ! [[ $PHP_XDEBUG_REMOTE_HOST =~ $REGEX ]]; then
+        echo "Invalid input. Please use a valid host name."
+    else
+        break;
+    fi
+  done
+
+  ## PHP_XDEBUG_REMOTE_PORT
+  while true; do
+    printf "\e[1mEnter the phpMyAdmin port:\e[0m "
+    read PHP_XDEBUG_REMOTE_PORT
+
+    REGEX='^[0-9]+$';
+    if ! [[ $PHP_XDEBUG_REMOTE_PORT =~ $REGEX ]]; then
+        echo "Invalid input. Please use only numbers."
+    else
+        break;
+    fi
+  done
+fi
 
 ## NODE_VERSION
 while true; do
-  printf "\e[1mEnter the Node.js version:\e[0m (8-alpine) "
+  printf "\e[1mEnter the Node.js version:\e[0m (9-alpine) "
   read NODE_VERSION
 
   if [ -z $NODE_VERSION ]; then
-    NODE_VERSION="8-alpine"
+    NODE_VERSION="9-alpine"
   fi
 
-  # @TOFIX: only 8 and 8-alpine for now
-  REGEX='^8(-alpine)?$';
+  REGEX='^[89]((-alpine)|(-php))?$';
   if ! [[ $NODE_VERSION =~ $REGEX ]]; then
       echo "Invalid input. Please use valid version."
   else
       break;
   fi
 done
+
+## NODE_BROWSERSYNC_PORT
+if [ "${NODE_VERSION}" == "9-php" ]; then
+  while true; do
+    printf "\e[1mEnter the Browser-Sync port (exposed from NodeJS container):\e[0m (3050) "
+    read NODE_BROWSERSYNC_PORT
+
+    if [ -z $NODE_BROWSERSYNC_PORT ]; then
+      NODE_BROWSERSYNC_PORT=3050
+    fi
+
+    REGEX='^[0-9]+(\-[0-9]+)?$';
+    if ! [[ $NODE_BROWSERSYNC_PORT =~ $REGEX ]]; then
+        echo "Invalid input. Please use only numbers or a range."
+    else
+        break;
+    fi
+  done
+fi
 
 # ---
 
@@ -184,8 +234,11 @@ sed -i "s/%%PUBLIC_PMA_PORT%%/$PUBLIC_PMA_PORT/g" "${PROJECT_DIR}/drucker.config
 sed -i "s/%%DRUPAL_VERSION%%/$DRUPAL_VERSION/g" "${PROJECT_DIR}/drucker.config"
 sed -i "s/%%PHP_VERSION%%/$PHP_VERSION/g" "${PROJECT_DIR}/drucker.config"
 sed -i "s/%%PHP_XDEBUG_ENABLED%%/$PHP_XDEBUG_ENABLED/g" "${PROJECT_DIR}/drucker.config"
+sed -i "s/%%PHP_XDEBUG_REMOTE_HOST%%/$PHP_XDEBUG_REMOTE_HOST/g" "${PROJECT_DIR}/drucker.config"
+sed -i "s/%%PHP_XDEBUG_REMOTE_PORT%%/$PHP_XDEBUG_REMOTE_PORT/g" "${PROJECT_DIR}/drucker.config"
 sed -i "s/%%SUBNET%%/$SUBNET/g" "${PROJECT_DIR}/drucker.config"
 sed -i "s/%%NODE_VERSION%%/$NODE_VERSION/g" "${PROJECT_DIR}/drucker.config"
+sed -i "s/%%NODE_BROWSERSYNC_PORT%%/$NODE_BROWSERSYNC_PORT/g" "${PROJECT_DIR}/drucker.config"
 
 # Greetings
 printf "\033[0;32m\e[1m[DONE]\e[0m Your drucker.config file is created.\n"

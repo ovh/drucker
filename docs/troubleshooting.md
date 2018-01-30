@@ -1,5 +1,5 @@
 ## Network: IP already in use
-This error is shown because you try to use a command (like Drush) with the stack stopped (make stop). You need to either re-run the stack (```make start```), or shutdown it.
+This error is shown because you try to use a command (like Drush) with the stack stopped (drucker stop). You need to either re-run the stack (```drucker start```), or shutdown it.
 
 ## Network: Why IPv6 is disabled?
 The IPv6 is disabled inside containers, due to internal side effects (see Docker images).
