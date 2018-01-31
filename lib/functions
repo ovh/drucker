@@ -400,6 +400,7 @@ mkdir -p "$(projectdir)/www/private/default/files" # you can place private files
 mkdir -p "$(projectdir)/www/config"
 mkdir -p "$(projectdir)/www/config/sync" # you can place the config files here
 mkdir -p "$(projectdir)/www/tmp" # scripts will place temporary files here
+chmod 777 "$(projectdir)/www/tmp"
 umask "${old_umask}"
 
 _create-database

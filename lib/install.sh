@@ -146,6 +146,7 @@ if [ ! -e "$(projectdir)/www/web/sites/default/services.yml" ] && [ -e "$(projec
     cp "$(projectdir)/www/web/sites/default/default.services.yml" "$(projectdir)/www/web/sites/default/services.yml"
     # Activates debug mode
     sed -i 's/debug: false/debug: true/g' "$(projectdir)/www/web/sites/default/services.yml"
+    sed -i 's/auto_reload: null/auto_reload: true/g' "$(projectdir)/www/web/sites/default/services.yml"
 fi
 
 
