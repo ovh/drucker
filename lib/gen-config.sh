@@ -175,7 +175,7 @@ if [ "${PHP_XDEBUG_ENABLED}" == 1 ]; then
 
   ## PHP_XDEBUG_REMOTE_PORT
   while true; do
-    printf "\e[1mEnter the phpMyAdmin port:\e[0m "
+    printf "\e[1mEnter the XDEBUG remote port:\e[0m "
     read PHP_XDEBUG_REMOTE_PORT
 
     REGEX='^[0-9]+$';
