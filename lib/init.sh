@@ -31,8 +31,8 @@ if [ ! $(find "$(docroot)" -prune -empty) ]; then
     done
 fi
 
-# docker-compose build
-./docker-compose-utils.sh action="build" || exit 1    # @TOFIX: temporary "exit 1" because set-e is disabled
+# Build Docker images
+docker_images_build || exit 1    # @TOFIX: temporary "exit 1" because set-e is disabled
 
 # Download Drupal into a temporary location
 echo "Downloading and installing Drupal ${DRUPAL_VERSION} with Composer..."

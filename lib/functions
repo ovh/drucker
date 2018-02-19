@@ -23,19 +23,6 @@ env -i ./environment | grep -v "_=" | sort > .docker.env
 
 popd > /dev/null
 
-# @function check_project_dir
-#           Checks if launched command is inside the current project dir
-function check_project_dir ()
-{
-    if case "$(pwd)" in "${PROJECT_DIR}"*) false;; *) true;; esac; then
-        echo -e "\033[1;33m[WARNING]\033[0m You're not inside the project dir where you've loaded the env."
-        echo -en "\033[1;33m[WARNING]\033[0m Changing directory to ${PROJECT_DIR}... "
-        cd "${PROJECT_DIR}"
-        sleep 1
-        echo "Done."
-    fi
-}
-
 # @function projectdir
 #           returns the path of the project dir
 function projectdir ()
@@ -83,6 +70,28 @@ function tmp ()
 function web_tmp()
 {
     echo "/var/www/html/tmp"
+}
+
+# @function check_project_dir
+#           Checks if launched command is inside the current project dir
+function check_project_dir ()
+{
+    if case "$(pwd)" in "${PROJECT_DIR}"*) false;; *) true;; esac; then
+        echo -e "\033[1;33m[WARNING]\033[0m You're not inside the project dir where you've loaded the env."
+        echo -en "\033[1;33m[WARNING]\033[0m Changing directory to ${PROJECT_DIR} in 5 seconds ([ctrl-c] to cancel)... "
+        sleep 5
+        cd "${PROJECT_DIR}"
+        echo "Done."
+    fi
+}
+
+# @function docker_images_build
+#           Builds all images
+function docker_images_build() {
+    echo "Building docker-compose images..."
+    "${DRUCKER_DIR}"/lib/docker-compose-utils.sh action="build"
+    echo "Building custom images..."
+    docker build -t "${NODE_IMAGE}" "${NODE_CONTEXT}"
 }
 
 # @function tty_option
@@ -302,6 +311,9 @@ function drucker()
         ;;
     "sql-sanitize")
         "${DRUCKER_DIR}"/lib/sql-backup-restore.sh --sanitize -y
+        ;;
+    "docker-images-build")          # Hidden feature
+        docker_images_build
         ;;
     *)
         fhelp

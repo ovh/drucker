@@ -29,12 +29,8 @@ if [ ! -f "$(wwwdir)/composer.json" ]; then
     exit 1
 fi
 
-# docker-compose build
-./docker-compose-utils.sh action="build" || exit 1    # @TOFIX: temporary "exit 1" because set-e is disabled
-
-# docker build custom images
-echo "Building custom images..."
-docker build -t "${NODE_IMAGE}" "${NODE_CONTEXT}"
+# Build Docker images
+docker_images_build || exit 1    # @TOFIX: temporary "exit 1" because set-e is disabled
 
 # Install vendor
 echo "Installing dependencies..."
