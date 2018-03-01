@@ -1,4 +1,4 @@
-FROM wodby/mariadb:10
+FROM wodby/mariadb:10.1-3.1.2
 MAINTAINER OVH-UX <github@ovh.net>
 
 ARG DOCKER_USER=1000
