@@ -36,6 +36,10 @@ docker_images_build || exit 1    # @TOFIX: temporary "exit 1" because set-e is d
 echo "Installing dependencies..."
 composer install
 
+# Ensure that required files are created
+echo "Ensure that composer post-install-cmd is run..."
+composer run post-install-cmd
+
 # Run drupal-scaffold
 echo "Running Drupal-scaffold..."
 composer run-script drupal-scaffold
@@ -110,7 +114,7 @@ fi
 ensure_default_settings_writable
 
 # Create settings.local.php
-if [ ! -e "$(projectdir)/www/web/sites/default/settings.local.php" ]; then
+if [ ! -e "$(projectdir)/www/web/sites/default/settings.local.php" ] && [ -e "$(projectdir)/www/web/sites/default/settings.yml" ]; then
     echo "Creating settings.local.php..."
 
     # Activates it inside settings.php
