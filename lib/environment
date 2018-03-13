@@ -21,8 +21,9 @@ export PHP_SERVICE="${service}"
 # the container name:
 export PHP_NAME="${PROJECT_NAME_PLAIN}_${service}"
 # the image to build the container from:
-export PHP_IMAGE="ovh/drupal-php:${PHP_VERSION}"
-export PHP_IMAGE_CONTEXT="./docker-images/drupal-php/${PHP_VERSION}"
+if [ -z "${PHP_IMAGE_VERSION}" ]; then PHP_IMAGE_VERSION="${PHP_VERSION}-3.0.0"; fi
+export PHP_IMAGE="ovh/drupal-php:${PHP_IMAGE_VERSION}"
+export PHP_IMAGE_CONTEXT="./docker-images/drupal-php/${PHP_IMAGE_VERSION}"
 SUBDOMAINS+="${service} "
 
 # service: www
@@ -31,8 +32,9 @@ export WWW_SERVICE="${service}"
 # the container name:
 export WWW_NAME="${PROJECT_NAME_PLAIN}_${service}"
 # the image to build the container from:
-export WWW_IMAGE="ovh/drupal-nginx:${DRUPAL_VERSION}-1.13"
-export WWW_IMAGE_CONTEXT="./docker-images/drupal-nginx/${DRUPAL_VERSION}/1.13"
+if [ -z "${WWW_IMAGE_VERSION}" ]; then WWW_IMAGE_VERSION="1.13-3.0.0"; fi
+export WWW_IMAGE="ovh/drupal-nginx:${DRUPAL_VERSION}-${WWW_IMAGE_VERSION}"
+export WWW_IMAGE_CONTEXT="./docker-images/drupal-nginx/${DRUPAL_VERSION}/${WWW_IMAGE_VERSION}"
 SUBDOMAINS+="${service} "
 
 # service: db
@@ -41,8 +43,9 @@ export DB_SERVICE="${service}"
 # the container name:
 export DB_NAME="${PROJECT_NAME_PLAIN}_${service}"
 # the image to build the container from:
-export DB_IMAGE="ovh/drupal-mariadb:10"
-export DB_IMAGE_CONTEXT="./docker-images/drupal-mariadb/10"
+if [ -z "${DB_IMAGE_VERSION}" ]; then DB_IMAGE_VERSION="10.1-3.0.0"; fi
+export DB_IMAGE="ovh/drupal-mariadb:${DB_IMAGE_VERSION}"
+export DB_IMAGE_CONTEXT="./docker-images/drupal-mariadb/${DB_IMAGE_VERSION}"
 # the db root password:
 export DB_ROOT_PASSWORD="drootpal"
 # credentials for the Drupal database:
