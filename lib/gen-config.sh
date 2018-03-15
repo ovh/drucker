@@ -189,11 +189,11 @@ fi
 
 ## NODE_VERSION
 while true; do
-  printf "\e[1mEnter the Node.js version:\e[0m (9-alpine) "
+  printf "\e[1mEnter the Node.js version:\e[0m (9-php) "
   read NODE_VERSION
 
   if [ -z $NODE_VERSION ]; then
-    NODE_VERSION="9-alpine"
+    NODE_VERSION="9-php"
   fi
 
   REGEX='^[89]((-alpine)|(-php))?$';
