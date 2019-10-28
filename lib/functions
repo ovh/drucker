@@ -71,6 +71,12 @@ function web_tmp()
 {
     echo "/var/www/html/tmp"
 }
+# @function path_relative_to_projectdir
+#           returns the path of the current pwd relative to the project dir
+function path_relative_to_projectdir()
+{
+    realpath --relative-to="$(projectdir)" "$(pwd)"
+}
 
 # @function check_project_dir
 #           Checks if launched command is inside the current project dir
@@ -91,7 +97,7 @@ function docker_images_build() {
     echo "Building docker-compose images..."
     "${DRUCKER_DIR}"/lib/docker-compose-utils.sh action="build"
     echo "Building custom images..."
-    docker build -t "${NODE_IMAGE}" "${NODE_CONTEXT}"
+    docker build --no-cache -t "${NODE_IMAGE}" "${NODE_CONTEXT}"
 }
 
 # @function tty_option
@@ -206,8 +212,8 @@ function node()
         $(tty_option) \
         --rm \
         $(node_ports) \
-        --volume="$(pwd)":/usr/src/app \
-        --workdir=/usr/src/app \
+        --volume="$(projectdir)":/usr/src/app \
+        --workdir="/usr/src/app/$(path_relative_to_projectdir)" \
         --user="${WWW_USER}:${WWW_USER_GROUP}" \
         --name="${PROJECT_NAME_PLAIN}_tmp_node_$(date +%H%M%S)" \
         ${NODE_IMAGE} \
@@ -222,8 +228,8 @@ function npm()
         $(tty_option) \
         --rm \
         $(node_ports) \
-        --volume="$(pwd)":/usr/src/app \
-        --workdir=/usr/src/app \
+        --volume="$(projectdir)":/usr/src/app \
+        --workdir="/usr/src/app/$(path_relative_to_projectdir)" \
         --user="${WWW_USER}:${WWW_USER_GROUP}" \
         --name="${PROJECT_NAME_PLAIN}_tmp_npm_$(date +%H%M%S)" \
         ${NODE_IMAGE} \
@@ -238,8 +244,8 @@ function yarn()
         $(tty_option) \
         --rm \
         $(node_ports) \
-        --volume="$(pwd)":/usr/src/app \
-        --workdir=/usr/src/app \
+        --volume="$(projectdir)":/usr/src/app \
+        --workdir="/usr/src/app/$(path_relative_to_projectdir)" \
         --user="${WWW_USER}:${WWW_USER_GROUP}" \
         --name="${PROJECT_NAME_PLAIN}_tmp_yarn_$(date +%H%M%S)" \
         ${NODE_IMAGE} \
@@ -254,8 +260,8 @@ function gulp()
         $(tty_option) \
         --rm \
         $(node_ports) \
-        --volume="$(pwd)":/usr/src/app \
-        --workdir=/usr/src/app \
+        --volume="$(projectdir)":/usr/src/app \
+        --workdir="/usr/src/app/$(path_relative_to_projectdir)" \
         --user="${WWW_USER}:${WWW_USER_GROUP}" \
         --name="${PROJECT_NAME_PLAIN}_tmp_gulp_$(date +%H%M%S)" \
         ${NODE_IMAGE} \
