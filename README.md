@@ -13,7 +13,7 @@ The goals of this project is to have a Drupal development environment without in
 
 ## Documentation
 
-Full documentation is available [here](https://ovh-ux.github.io/drucker/).
+Full documentation is available [here](https://ovh.github.io/drucker/).
 
 
 ## Contributing

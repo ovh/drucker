@@ -186,7 +186,7 @@ $ cd <name of the project>
 # Initialize an empty GIT project
 $ git init
 # Add Drucker in your project, as a Git submodule
-$ git submodule add https://github.com/ovh-ux/drucker.git drucker
+$ git submodule add https://github.com/ovh/drucker.git drucker
 # Launch a fresh install of Drupal
 $ cd drucker
 $ source load-env
